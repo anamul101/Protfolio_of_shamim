@@ -5,26 +5,35 @@ const skills = [
   // Frontend
   { name: "HTML/CSS", level: 95, category: "frontend" },
   { name: "JavaScript", level: 90, category: "frontend" },
-  { name: "React", level: 90, category: "frontend" },
-  { name: "TypeScript", level: 85, category: "frontend" },
-  { name: "Tailwind CSS", level: 90, category: "frontend" },
   { name: "Next.js", level: 80, category: "frontend" },
+  { name: "OOP", level: 80, category: "frontend" },
 
   // Backend
   { name: "Node.js", level: 80, category: "backend" },
-  { name: "Express", level: 75, category: "backend" },
+  { name: "Java", level: 75, category: "backend" },
   { name: "MongoDB", level: 70, category: "backend" },
-  { name: "PostgreSQL", level: 65, category: "backend" },
-  { name: "GraphQL", level: 60, category: "backend" },
+  { name: "Python", level: 65, category: "backend" },
+  { name: "C / C++", level: 60, category: "backend" },
+  { name: "MySQL", level: 60, category: "backend" },
 
   // Tools
   { name: "Git/GitHub", level: 90, category: "tools" },
   { name: "Docker", level: 70, category: "tools" },
-  { name: "Figma", level: 85, category: "tools" },
+  { name: "Data Structures & Algorithms", level: 85, category: "tools" },
+  { name: "Android App ", level: 95, category: "tools" },
   { name: "VS Code", level: 95, category: "tools" },
+
+  // Soft Skills
+  { name: "Team Collaboration", level: 90, category: "SoftSkills" },
+  { name: "Communication", level: 95, category: "SoftSkills" },
+  { name: "Time Management", level: 80, category: "SoftSkills" },
+  { name: "Quick Learner", level: 75, category: "SoftSkills" },
+  { name: "Adaptability", level: 90, category: "SoftSkills" },
+  { name: "Analytical Thinking", level: 70, category: "SoftSkills" },
+ 
 ];
 
-const categories = ["all", "frontend", "backend", "tools"];
+const categories = ["all", "frontend", "backend", "tools","SoftSkills"];
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
