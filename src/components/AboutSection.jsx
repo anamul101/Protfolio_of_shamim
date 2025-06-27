@@ -12,20 +12,25 @@ export const AboutSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold">
-              Passionate Web Developer & Tech Creator
+              Passionate Software Engineer
             </h3>
 
             <p className="text-muted-foreground">
-              With over 5 years of experience in web development, I specialize
-              in creating responsive, accessible, and performant web
-              applications using modern technologies.
+              Hi, I’m Shamim Chowdhury—a recent graduate from the Computer Science & Engineering department at East West University, 
+              with a specialization in Software Engineering. I’m deeply passionate about technology and love turning ideas into functional, 
+              user-friendly software.
             </p>
 
             <p className="text-muted-foreground">
-              I'm passionate about creating elegant solutions to complex
-              problems, and I'm constantly learning new technologies and
-              techniques to stay at the forefront of the ever-evolving web
-              landscape.
+              During my academic years, I gained hands-on experience with various programming languages, 
+              software development methodologies, and collaborative projects. 
+              Whether it’s solving complex problems or building intuitive user interfaces, 
+              I enjoy every step of the development process.
+            </p>
+            <p className="text-muted-foreground">
+              Outside of coding, I enjoy playing guitar, badminton, and watching anime, which helps keep my creativity and adaptability sharp. 
+              I’m currently looking for opportunities where I can apply my skills, grow as a developer, 
+              and contribute to meaningful software solutions.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
@@ -50,10 +55,10 @@ export const AboutSection = () => {
                   <Code className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg"> Web Development</h4>
+                  <h4 className="font-semibold text-lg">Software Engineer</h4>
                   <p className="text-muted-foreground">
-                    Creating responsive websites and web applications with
-                    modern frameworks.
+                    A software engineer applies engineering principles to design, 
+                    develop, test, and maintain software systems.
                   </p>
                 </div>
               </div>
@@ -61,13 +66,13 @@ export const AboutSection = () => {
             <div className="gradient-border p-6 card-hover">
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-full bg-primary/10">
-                  <User className="h-6 w-6 text-primary" />
+                  <Code className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">UI/UX Design</h4>
+                  <h4 className="font-semibold text-lg">Web Developer</h4>
                   <p className="text-muted-foreground">
-                    Designing intuitive user interfaces and seamless user
-                    experiences.
+                    Creating responsive websites and web applications with
+                    modern frameworks.
                   </p>
                 </div>
               </div>

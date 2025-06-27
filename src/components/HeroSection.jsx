@@ -20,7 +20,7 @@ export const HeroSection = () => {
             </span>
           </h1>
           <h1 className="text-4xl">
-            <span className="opacity-0 animate-fade-in"> Graduation From</span>
+            <span className="opacity-0 animate-fade-in"> Graduated</span>
             <span className="text-primary opacity-0 animate-fade-in-delay-1">
               {" "}
               East West University
@@ -28,9 +28,11 @@ export const HeroSection = () => {
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            I create stellar web experiences with modern technologies.
-            Specializing in front-end development, I build interfaces that are
-            both beautiful and functional.
+            I’m a passionate Computer Science graduate from East West University, 
+            with a concentration in Software Engineering. Throughout my academic journey, 
+            I’ve developed a strong foundation in software development, problem-solving, 
+            and modern programming practices. I enjoy building clean, efficient code and am particularly interested in web development, 
+            software architecture, and user-centric design.
           </p>
 
           <div className="pt-4 opacity-0 animate-fade-in-delay-4">
