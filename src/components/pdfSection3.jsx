@@ -8,8 +8,7 @@ import {
   faTrash, 
   faCheckCircle, 
   faCloudUploadAlt,
-  faTimes,
-  faDownload
+  faTimes
 } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
@@ -19,8 +18,8 @@ function App() {
   const [pdfFile, setPdfFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
+  const [previewMode, setPreviewMode] = useState(false);
   const [error, setError] = useState("");
-  const [previewTitle, setPreviewTitle] = useState("");
 
   useEffect(() => {
     getFiles();
@@ -73,14 +72,9 @@ function App() {
     }
   };
 
-  const showPdf = (pdf, title) => {
+  const showPdf = (pdf) => {
     setPdfFile(`http://localhost:5000/files/${pdf}`);
-    setPreviewTitle(title);
-  };
-
-  const closePreview = () => {
-    setPdfFile(null);
-    setPreviewTitle("");
+    setPreviewMode(true);
   };
 
   const deleteFile = async (id, fileName) => {
@@ -92,7 +86,8 @@ function App() {
       getFiles();
       
       if (pdfFile && pdfFile.includes(fileName)) {
-        closePreview();
+        setPdfFile(null);
+        setPreviewMode(false);
       }
     } catch (err) {
       setError("Delete failed. Please try again.");
@@ -101,9 +96,9 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br ">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Header */}
-      {/* <header className="bg-gradient-to-r from-indigo-600 to-purple-700 text-white py-12 px-4 shadow-xl">
+      <header className="bg-gradient-to-r from-indigo-600 to-purple-700 text-white py-12 px-4 shadow-xl">
         <div className="max-w-6xl mx-auto text-center">
           <div className="flex items-center justify-center space-x-3 mb-4">
             <FontAwesomeIcon icon={faFilePdf} className="text-4xl text-white" />
@@ -113,7 +108,7 @@ function App() {
             Upload, manage, and preview your PDF documents with our premium solution
           </p>
         </div>
-      </header> */}
+      </header>
 
       <div className="max-w-6xl mx-auto py-10 px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -122,7 +117,7 @@ function App() {
             <div className="bg-gradient-to-r from-indigo-500 to-purple-600 px-6 py-4">
               <h2 className="text-xl font-bold text-white flex items-center space-x-2">
                 <FontAwesomeIcon icon={faUpload} />
-                <span>Upload Documents</span>
+                <span>Upload PDF</span>
               </h2>
             </div>
             
@@ -216,7 +211,7 @@ function App() {
           {/* Files Section */}
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
             <div className="bg-gradient-to-r from-indigo-500 to-purple-600 px-6 py-4">
-              <h2 className="text-xl font-bold text-white">My All Documents</h2>
+              <h2 className="text-xl font-bold text-white">Your Documents</h2>
             </div>
             
             <div className="p-6">
@@ -229,14 +224,7 @@ function App() {
               ) : (
                 <div className="space-y-4">
                   {allFiles.map((data) => (
-                    <div 
-                      key={data._id} 
-                      className={`flex items-center justify-between p-4 border rounded-lg transition-colors ${
-                        pdfFile && pdfFile.includes(data.pdf) 
-                          ? "border-indigo-500 bg-indigo-50" 
-                          : "border-gray-200 hover:bg-gray-50"
-                      }`}
-                    >
+                    <div key={data._id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                       <div className="flex items-center space-x-4">
                         <div className="bg-red-100 w-12 h-12 rounded-lg flex items-center justify-center">
                           <FontAwesomeIcon icon={faFilePdf} className="text-xl text-red-500" />
@@ -251,12 +239,8 @@ function App() {
                       
                       <div className="flex space-x-2">
                         <button 
-                          onClick={() => showPdf(data.pdf, data.title)}
-                          className={`px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors ${
-                            pdfFile && pdfFile.includes(data.pdf) 
-                              ? "bg-indigo-600 text-white" 
-                              : "bg-indigo-100 text-indigo-700 hover:bg-indigo-200"
-                          }`}
+                          onClick={() => showPdf(data.pdf)}
+                          className="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-indigo-200 transition-colors"
                         >
                           <FontAwesomeIcon icon={faEye} />
                           <span>Preview</span>
@@ -275,62 +259,69 @@ function App() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* PDF Preview Section - Added below the two columns */}
-        {pdfFile && (
-          <div className="mt-8 bg-white rounded-2xl shadow-xl overflow-hidden">
+      {/* PDF Preview Modal */}
+      {previewMode && pdfFile && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col">
             <div className="bg-gradient-to-r from-indigo-600 to-purple-700 px-6 py-4 flex justify-between items-center">
-              <div className="flex items-center space-x-3">
-                <FontAwesomeIcon icon={faFilePdf} className="text-2xl text-white" />
-                <h2 className="text-xl font-bold text-white">PDF Preview: {previewTitle}</h2>
-              </div>
+              <h2 className="text-xl font-bold text-white">PDF Preview</h2>
               <button 
-                onClick={closePreview}
+                onClick={() => setPreviewMode(false)}
                 className="text-white hover:text-gray-200 text-xl"
               >
                 <FontAwesomeIcon icon={faTimes} />
               </button>
             </div>
             
-            <div className="p-4">
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="md:w-1/3">
-                  <div className="bg-indigo-50 border-2 border-dashed border-indigo-200 rounded-xl p-6 text-center">
-                    <FontAwesomeIcon icon={faFilePdf} className="text-6xl text-red-500 mb-4" />
-                    <h3 className="text-lg font-medium text-gray-800 mb-2">{previewTitle}</h3>
-                    <p className="text-gray-600 mb-4">
-                      Click the download button to save this document to your device
-                    </p>
-                    <a 
-                      href={pdfFile} 
-                      download
-                      className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:from-indigo-700 hover:to-purple-700 transition-all"
-                    >
-                      <FontAwesomeIcon icon={faDownload} />
-                      Download PDF
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="md:w-2/3">
-                  <div className="bg-gray-100 rounded-lg p-4 h-[500px]">
-                    <iframe 
-                      src={pdfFile} 
-                      className="w-full h-full rounded-lg border border-gray-300"
-                      title="PDF Preview"
-                    >
-                      <p className="text-center py-20 text-gray-500">
-                        Your browser does not support PDF preview. 
-                        <a href={pdfFile} className="text-indigo-600 ml-1">Download the PDF</a> instead.
-                      </p>
-                    </iframe>
-                  </div>
+            <div className="flex-1 overflow-auto p-4 bg-gray-100">
+              <div className="flex items-center justify-center min-h-[300px]">
+                <div className="text-center py-12">
+                  <FontAwesomeIcon icon={faFilePdf} className="text-6xl text-red-500 mb-4" />
+                  <p className="text-xl font-medium text-gray-700">PDF Preview</p>
+                  <p className="text-gray-600 mt-2">
+                    For a complete PDF viewing experience, we recommend downloading the file
+                  </p>
+                  <a 
+                    href={pdfFile} 
+                    download
+                    className="inline-block mt-6 bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors"
+                  >
+                    Download PDF
+                  </a>
                 </div>
               </div>
             </div>
+            
+            <div className="p-4 bg-gray-50 border-t border-gray-200">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600">PDF ready for download</span>
+                <a 
+                  href={pdfFile} 
+                  download
+                  className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:from-indigo-700 hover:to-purple-700 transition-all"
+                >
+                  Download
+                </a>
+              </div>
+            </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-8 mt-16">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <p className="text-lg font-medium">PDF Manager Pro © {new Date().getFullYear()}</p>
+          <p className="text-gray-400 mt-2">Secure PDF storage and management solution</p>
+          <div className="mt-4 flex justify-center space-x-6">
+            <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms</a>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy</a>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors">Support</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
