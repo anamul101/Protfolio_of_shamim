@@ -12,7 +12,7 @@ import {
   faDownload
 } from '@fortawesome/free-solid-svg-icons';
 
-function App() {
+function PdfSection2() {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState(null);
   const [allFiles, setAllFiles] = useState([]);
@@ -28,7 +28,7 @@ function App() {
 
   const getFiles = async () => {
     try {
-      const result = await axios.get("http://localhost:5000/get-files");
+      const result = await axios.get("https://protfolio-of-shamim-backend.vercel.app/get-files");
       setAllFiles(result.data.data);
     } catch (err) {
       setError("Failed to load files");
@@ -52,7 +52,7 @@ function App() {
       formData.append("file", file);
       
       const result = await axios.post(
-        "http://localhost:5000/upload-files",
+        "https://protfolio-of-shamim-backend.vercel.app/upload-files",
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -74,7 +74,7 @@ function App() {
   };
 
   const showPdf = (pdf, title) => {
-    setPdfFile(`http://localhost:5000/files/${pdf}`);
+    setPdfFile(`https://protfolio-of-shamim-backend.vercel.app/files/${pdf}`);
     setPreviewTitle(title);
   };
 
@@ -87,8 +87,8 @@ function App() {
     if (!window.confirm("Are you sure you want to delete this file?")) return;
     
     try {
-      await axios.delete(`http://localhost:5000/delete-file/${id}`);
-      await axios.delete(`http://localhost:5000/files/${fileName}`);
+      await axios.delete(`https://protfolio-of-shamim-backend.vercel.app/delete-file/${id}`);
+      await axios.delete(`https://protfolio-of-shamim-backend.vercel.app/files/${fileName}`);
       getFiles();
       
       if (pdfFile && pdfFile.includes(fileName)) {
@@ -335,4 +335,4 @@ function App() {
   );
 }
 
-export default App;
+export default PdfSection2;

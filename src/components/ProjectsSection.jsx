@@ -6,7 +6,7 @@ const projects = [
     title: "SaaS Landing Page",
     description: "A beautiful landing page app using React and Tailwind.",
     image: "/projects/project1.png",
-    tags: ["React", "TailwindCSS", "Supabase"],
+    tags: ["JavaScript", "TailwindCSS", "Next.js","Node.js"],
     demoUrl: "#",
     githubUrl: "#",
   },
@@ -16,7 +16,7 @@ const projects = [
     description:
       "Interactive analytics dashboard with data visualization and filtering capabilities.",
     image: "/projects/project2.png",
-    tags: ["TypeScript", "D3.js", "Next.js"],
+    tags: ["Android App", "Python", "MySQL","OOP"],
     demoUrl: "#",
     githubUrl: "#",
   },
@@ -26,7 +26,7 @@ const projects = [
     description:
       "Full-featured e-commerce platform with user authentication and payment processing.",
     image: "/projects/project3.png",
-    tags: ["React", "Node.js", "Stripe"],
+    tags: ["MongoDB", "Java", "Stripe"],
     demoUrl: "#",
     githubUrl: "#",
   },
@@ -100,7 +100,7 @@ export const ProjectsSection = () => {
           <a
             className="cosmic-button w-fit flex items-center mx-auto gap-2"
             target="_blank"
-            href="https://github.com/machadop1407"
+            href="#"
           >
             Check My Github <ArrowRight size={16} />
           </a>

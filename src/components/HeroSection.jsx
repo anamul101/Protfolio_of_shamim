@@ -38,7 +38,7 @@ export const HeroSection = () => {
             </p>
 
             <div className="pt-4 opacity-0 animate-fade-in-delay-4">
-              <a href="#projects" className="cosmic-button">
+              <a href="https://drive.google.com/drive/folders/1hkItcdayi3Nws_YZyUlymZtzAF2bB_3K?usp=sharing" target="_blank" className="cosmic-button">
                 View My Work
               </a>
             </div>
