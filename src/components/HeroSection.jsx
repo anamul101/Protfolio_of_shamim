@@ -39,7 +39,7 @@ export const HeroSection = () => {
 
             <div className="pt-4 opacity-0 animate-fade-in-delay-4">
               <a href="https://drive.google.com/drive/folders/1hkItcdayi3Nws_YZyUlymZtzAF2bB_3K?usp=sharing" target="_blank" className="cosmic-button">
-                View My Work
+                View My Internship Report
               </a>
             </div>
           </div>
